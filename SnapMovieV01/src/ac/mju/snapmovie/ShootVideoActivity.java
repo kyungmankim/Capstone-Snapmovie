@@ -18,7 +18,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
+/**
+ * Created by 김경만 on 2014-10-21.
+ * 시간좀 있을때 사용할 예정
+ */
 public class ShootVideoActivity extends Activity {
 	private Button mShutter;
 	private MyCameraSurface mSurface;

@@ -12,6 +12,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 
+
+
 public class VideoActivity extends Activity {
 	private static final int ACTION_TAKE_VIDEO = 3;
 
