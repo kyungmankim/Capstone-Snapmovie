@@ -9,14 +9,15 @@ import android.widget.Button;
 import android.widget.VideoView;
 
 public class VideoFilterActivity extends Activity implements OnClickListener {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_video_filter);
 
 		Button prevButton = (Button) findViewById(R.id.btn_videoFilter_prev);
+		prevButton.setOnClickListener(this);
 		Button nextButton = (Button) findViewById(R.id.btn_videoFilter_next);
+		nextButton.setOnClickListener(this);
 		VideoView FilterdVideo = (VideoView) findViewById(R.id.videoview_filtered_video);
 	}
 
@@ -28,7 +29,7 @@ public class VideoFilterActivity extends Activity implements OnClickListener {
 			startActivity(new Intent(this, MainActivity.class));
 			break;
 		case R.id.btn_videoFilter_next:
-			startActivity(new Intent(this, MainActivity.class));
+			startActivity(new Intent(this, AddAudioActivity.class));
 			break;
 		}
 	}

@@ -8,34 +8,38 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="30dp"
+        android:layout_height="35dp"
         android:background="#fff"
         android:orientation="horizontal" >
 
         <Button
-            
             android:id="@+id/btn_videoFilter_prev"
-            android:textSize="6pt"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:text="@string/btn_prev" 
-            android:layout_weight="1"/>
-		<TextView 
-		     android:layout_weight="3"
-		     android:layout_height="match_parent"
-		     android:gravity="center"
-		     android:text="@string/title_videoFilter"
-		     android:textSize="8pt"/>
+            android:layout_weight="1"
+            android:text="@string/btn_prev"
+            android:textSize="6pt" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="@string/title_videoFilter"
+            android:textSize="8pt" />
+
         <Button
             android:id="@+id/btn_videoFilter_next"
-            android:textSize="6pt"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:text="@string/btn_next" 
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="@string/btn_next"
+            android:textSize="6pt" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="280dp"
+        android:layout_height="250dp"
         android:background="#fff"
         android:orientation="vertical" >
 
@@ -46,7 +50,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="5dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,6 +68,8 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:columnWidth="30dp"
+            android:smoothScrollbar="true"
+            android:background="#aaa"
             android:numColumns="3" >
         </GridView>
     </LinearLayout>
