@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -42,6 +43,8 @@ public class VideoActivity extends Activity {
 	private boolean actionFlag;
 	private boolean confirmFlag;
 
+	private AlertDialog alertDialog;
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_video);
@@ -65,31 +68,23 @@ public class VideoActivity extends Activity {
 		return getString(R.string.album_name);
 	}
 
-	private File getAlbumDir() {
-		File storageDir = null;
-
-		if (Environment.MEDIA_MOUNTED.equals(Environment
-				.getExternalStorageState())) {
-
-			storageDir = mAlbumStorageDirFactory
-					.getAlbumStorageDir(getAlbumName());
-
-			if (storageDir != null) {
-				if (!storageDir.mkdirs()) {
-					if (!storageDir.exists()) {
-						Log.d("SnapMovie", "failed to create directory");
-						return null;
-					}
-				}
-			}
-
-		} else {
-			Log.v(getString(R.string.app_name),
-					"External storage is not mounted READ/WRITE.");
-		}
-
-		return storageDir;
-	}
+	/*
+	 * private File getAlbumDir() { File storageDir = null;
+	 * 
+	 * if (Environment.MEDIA_MOUNTED.equals(Environment
+	 * .getExternalStorageState())) {
+	 * 
+	 * storageDir = mAlbumStorageDirFactory .getAlbumStorageDir(getAlbumName());
+	 * 
+	 * if (storageDir != null) { if (!storageDir.mkdirs()) { if
+	 * (!storageDir.exists()) { Log.d("SnapMovie",
+	 * "failed to create directory"); return null; } } }
+	 * 
+	 * } else { Log.v(getString(R.string.app_name),
+	 * "External storage is not mounted READ/WRITE."); }
+	 * 
+	 * return storageDir; }
+	 */
 
 	private void dispatchTakeVideoIntent() {
 		Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
@@ -111,28 +106,8 @@ public class VideoActivity extends Activity {
 		case ACTION_TAKE_VIDEO: {
 			if (resultCode == RESULT_OK) {
 				handleCameraVideo(data);
-				confirmShooting();
 
-				AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-				alertBuilder.setMessage("동영상을 더 찍으시겠습니까?").setCancelable(false);
-				alertBuilder.setPositiveButton("네",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int id) {
-								// Action for 'Yes' Button
-								confirmFlag = true;
-								dialog.dismiss();
-							}
-						}).setNegativeButton("다음단계로",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int id) {
-								// Action for 'NO' Button
-								confirmFlag = false;
-								dialog.cancel();
-							}
-						});
-				AlertDialog alert = alertBuilder.create();
-				alert.setTitle("진행 확인");
-				alert.show();
+				// 여기서 알ㄹ러트창 띄워주ㅝ야함 confirmFlag 변경하고
 
 				if (confirmFlag == true) {
 					// 본 액티비티 피니쉬 후 다시시도
@@ -149,15 +124,10 @@ public class VideoActivity extends Activity {
 		} // switch
 	}
 
-	private void confirmShooting() {
-		// TODO Auto-generated method stub
-
-	}
-
 	private void handleCameraVideo(Intent intent) {
 		// mVideoUri = (Uri)intent.getExtras().get("data");
 		mVideoUri = intent.getData();
-		// 비디오뷰에 플ㄹㄹ레이할것인지?
+		// 비디오뷰에 플레이할것인지?
 	}
 
 	@Override
@@ -171,4 +141,23 @@ public class VideoActivity extends Activity {
 		super.onRestoreInstanceState(savedInstanceState);
 		mVideoUri = savedInstanceState.getParcelable(VIDEO_STORAGE_KEY);
 	}
+
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		if (alertDialog != null)
+			alertDialog.dismiss();
+	}
+	/*
+	 * 알러트창 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+	 * alertBuilder.setMessage("동영상을 더 찍으시겠습니까?" ).setCancelable(false);
+	 * alertBuilder.setPositiveButton("네", new DialogInterface.OnClickListener()
+	 * { public void onClick(DialogInterface dialog, int id) { // Action for
+	 * 'Yes' Button confirmFlag = true; dialog.dismiss(); }
+	 * }).setNegativeButton("다음단계로", new DialogInterface.OnClickListener() {
+	 * public void onClick(DialogInterface dialog, int id) { // Action for 'NO'
+	 * Button confirmFlag = false; dialog.cancel(); } }); alertDialog =
+	 * alertBuilder.create(); alertDialog.setTitle("진행 확인"); alertDialog.show();
+	 */
 }
