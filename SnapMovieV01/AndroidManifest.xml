@@ -30,6 +30,10 @@
             android:name=".ShootVideoActivity"
             android:label="@string/title_activity_shoot_video" >
         </activity>
+        <activity
+            android:name=".VideoGalleryActivity"
+            android:label="@string/title_activity_video_gallery" >
+        </activity>
     </application>
 
 </manifest>

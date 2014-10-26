@@ -9,5 +9,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_video">VideoActivity</string>
     <string name="title_activity_shoot_video">ShootVideoActivity</string>
+    <string name="title_activity_video_gallery">VideoGalleryActivity</string>
 
 </resources>
