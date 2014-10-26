@@ -7,6 +7,9 @@ import android.view.MenuItem;
 
 public class VideoGalleryActivity extends Activity {
 
+	/**
+	 * 특정 폴더만들어서 그곳에 전부 저장 및 가져와서 리스트업 해줘야 함.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
