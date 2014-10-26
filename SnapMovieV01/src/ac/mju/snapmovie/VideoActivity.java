@@ -14,6 +14,22 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 
+// Uri fileUri; 이부분 비디오 저장위치 지정하는 부분.
+/*
+ * fileUri = getOutputMediaFileUri(); // create a file to save the video
+ * takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri); // set
+ * the image file name
+ * takeVideoIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0); // set
+ * the video image quality to high
+ */
+// Action for 'Yes' Button
+// Action for 'NO' Button
+// 본 액티비티 피니쉬 후 다시시도
+// ACTION_TAKE_VIDEO
+// switch
+// TODO Auto-generated method stub
+// mVideoUri = (Uri)intent.getExtras().get("data");
+// 비디오뷰에 플ㄹㄹ레이할것인지?
 public class VideoActivity extends Activity {
 	private static final int ACTION_TAKE_VIDEO = 3;
 
@@ -96,7 +112,6 @@ public class VideoActivity extends Activity {
 			if (resultCode == RESULT_OK) {
 				handleCameraVideo(data);
 				confirmShooting();
-				
 
 				AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
 				alertBuilder.setMessage("동영상을 더 찍으시겠습니까?").setCancelable(false);
@@ -118,8 +133,7 @@ public class VideoActivity extends Activity {
 				AlertDialog alert = alertBuilder.create();
 				alert.setTitle("진행 확인");
 				alert.show();
-				
-				
+
 				if (confirmFlag == true) {
 					// 본 액티비티 피니쉬 후 다시시도
 				} else {

@@ -34,6 +34,10 @@
             android:name=".VideoGalleryActivity"
             android:label="@string/title_activity_video_gallery" >
         </activity>
+        <activity
+           android:name=".VideoFilterActivity"
+            android:label="@string/title_activity_video_filter" >
+        </activity>
     </application>
 
 </manifest>

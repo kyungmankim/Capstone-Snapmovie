@@ -10,5 +10,10 @@
     <string name="title_activity_video">VideoActivity</string>
     <string name="title_activity_shoot_video">ShootVideoActivity</string>
     <string name="title_activity_video_gallery">VideoGalleryActivity</string>
+    <string name="title_activity_video_filter">VideoFilterActivity</string>
+    
+    <string name="btn_prev">이전</string>
+    <string name="btn_next">다음</string>
+    <string name="title_videoFilter">Video Filter</string>
 
 </resources>

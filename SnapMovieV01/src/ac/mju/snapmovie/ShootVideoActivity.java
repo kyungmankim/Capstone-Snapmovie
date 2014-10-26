@@ -18,9 +18,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
 /**
- * Created by 김경만 on 2014-10-21.
- * 시간좀 있을때 사용할 예정
+ * Created by 김경만 on 2014-10-21. 시간좀 있을때 사용할 예정
  */
 public class ShootVideoActivity extends Activity {
 	private Button mShutter;
@@ -28,7 +28,7 @@ public class ShootVideoActivity extends Activity {
 	private String mRootPath;
 	private static final String PICFOLDER = "CameraTest";
 	private AlbumFactory mAlbumStorageDirFactory = new BaseAlbumDirFactory();
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,9 +42,13 @@ public class ShootVideoActivity extends Activity {
 			}
 		});
 
-		/*mRootPath = Environment.getExternalStorageDirectory().getAbsolutePath()
-				+ "/" + PICFOLDER;*/
-		mRootPath = mAlbumStorageDirFactory.getAlbumStorageDirUrl(getAlbumName());
+		/*
+		 * mRootPath =
+		 * Environment.getExternalStorageDirectory().getAbsolutePath() + "/" +
+		 * PICFOLDER;
+		 */
+		mRootPath = mAlbumStorageDirFactory
+				.getAlbumStorageDirUrl(getAlbumName());
 		File fRoot = new File(mRootPath);
 		if (fRoot.exists() == false) {
 			if (fRoot.mkdir() == false) {
@@ -117,7 +121,7 @@ public class ShootVideoActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	private String getAlbumName() {
 		Log.i("getAlbumName", getString(R.string.album_name));
 		return getString(R.string.album_name);
