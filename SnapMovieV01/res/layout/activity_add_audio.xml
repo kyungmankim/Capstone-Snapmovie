@@ -1,0 +1,67 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:background="#fff"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_videoFilter_prev"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/btn_prev"
+            android:textSize="6pt" />
+
+        <TextView
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="@string/title_activity_add_audio"
+            android:textSize="8pt" />
+
+        <Button
+            android:id="@+id/btn_videoFilter_next"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/btn_next"
+            android:textSize="6pt" />
+    </LinearLayout>
+   <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="280dp"
+        android:background="#fff"
+        android:orientation="vertical" >
+
+        <VideoView
+            android:id="@+id/videoview_filtered_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/list_audio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
+        </ListView>
+    </LinearLayout>
+</LinearLayout>

@@ -34,6 +34,10 @@
             android:name=".VideoFilterActivity"
             android:label="@string/title_activity_video_filter" >
         </activity>
+        <activity
+            android:name=".AddAudioActivity"
+            android:label="@string/title_activity_add_audio" >
+        </activity>
     </application>
 
 </manifest>
