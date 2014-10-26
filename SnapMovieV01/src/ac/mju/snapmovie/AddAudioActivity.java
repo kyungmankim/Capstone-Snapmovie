@@ -25,6 +25,7 @@ import android.widget.VideoView;
 public class AddAudioActivity extends Activity implements OnClickListener,
 		OnItemClickListener {
 	private ListView audioList;
+	private ListView voiceList;
 	private MediaPlayer player;
 	private boolean isPlaying = false;
 	private Button prevButton;
@@ -41,7 +42,8 @@ public class AddAudioActivity extends Activity implements OnClickListener,
 		nextButton = (Button) findViewById(R.id.btn_videoFilter_next);
 		FilterdVideo = (VideoView) findViewById(R.id.videoview_filtered_video);
 		audioList = (ListView) findViewById(R.id.list_audio);
-
+		voiceList = (ListView) findViewById(R.id.list_voice);
+		
 		audioMap = new HashMap<String, Integer>();
 		audioMap.put("kalimba", R.raw.kalimba);
 		audioMap.put("maid_with_the_flaxen_hair",
@@ -58,6 +60,8 @@ public class AddAudioActivity extends Activity implements OnClickListener,
 
 		audioList.setAdapter(adapter);
 		audioList.setOnItemClickListener(this);
+		voiceList.setAdapter(adapter);
+		voiceList.setOnItemClickListener(this);
 
 	}
 
@@ -91,7 +95,7 @@ public class AddAudioActivity extends Activity implements OnClickListener,
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.btn_videoFilter_prev:
-			startActivity(new Intent(this, MainActivity.class));
+			startActivity(new Intent(this, VideoFilterActivity.class));
 			break;
 		case R.id.btn_videoFilter_next:
 			startActivity(new Intent(this, MainActivity.class));

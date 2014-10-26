@@ -15,5 +15,6 @@
     <string name="btn_prev">이전</string>
     <string name="btn_next">다음</string>
     <string name="title_videoFilter">Video Filter</string>
-
+	<string name="title_audio_select">배경음악</string>
+	<string name="title_voice_select">음성</string>
 </resources>
