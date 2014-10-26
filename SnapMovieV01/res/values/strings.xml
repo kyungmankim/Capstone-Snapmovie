@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="record_menu_start">Start</string>
+    <string name="record_menu_stop">Stop</string>
+    <string name="album_name">SnapMovie</string>
+    <string name="app_name">SnapMovie</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_video">VideoActivity</string>
+    <string name="title_activity_shoot_video">ShootVideoActivity</string>
+
+</resources>
