@@ -7,11 +7,14 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import ac.mju.util.BaseAlbumDirFactory;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,32 +23,50 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.MediaController;
 import android.widget.VideoView;
 
 public class AddAudioActivity extends Activity implements OnClickListener,
 		OnItemClickListener {
 	private ListView audioList;
 	private ListView voiceList;
-	private MediaPlayer player;
+	private MediaPlayer audioPlayer;
+	private MediaController videocontroller;
 	private boolean isPlaying = false;
 	private Button prevButton;
 	private Button nextButton;
 	private VideoView FilterdVideo;
 	private HashMap<String, Integer> audioMap;
+	private String videoFilePath;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_audio);
-
 		prevButton = (Button) findViewById(R.id.btn_videoFilter_prev);
 		prevButton.setOnClickListener(this);
 		nextButton = (Button) findViewById(R.id.btn_videoFilter_next);
 		nextButton.setOnClickListener(this);
+
 		FilterdVideo = (VideoView) findViewById(R.id.videoview_filtered_video);
+		videoFilePath = BaseAlbumDirFactory
+				.getAlbumStorageDirPath("SnapMovie_20141028_155126");
+		Log.e("VideoFilePath", videoFilePath);
+		FilterdVideo.setVideoPath(videoFilePath);
+		FilterdVideo.start();
+
+		videocontroller = new MediaController(AddAudioActivity.this);
+		FilterdVideo.setMediaController(videocontroller);
+		FilterdVideo.postDelayed(new Runnable() {
+			public void run() {
+				videocontroller.show(0);
+			}
+		}, 100);
+		FilterdVideo.start();
+
 		audioList = (ListView) findViewById(R.id.list_audio);
 		voiceList = (ListView) findViewById(R.id.list_voice);
-		
+
 		audioMap = new HashMap<String, Integer>();
 		audioMap.put("kalimba", R.raw.kalimba);
 		audioMap.put("maid_with_the_flaxen_hair",
@@ -77,17 +98,17 @@ public class AddAudioActivity extends Activity implements OnClickListener,
 			long id) {
 		// TODO Auto-generated method stub
 		Log.e("stop: isplaying", String.valueOf(isPlaying));
-		if (player != null) {
-			player.stop();
-			player = null;
+		if (audioPlayer != null) {
+			audioPlayer.stop();
+			audioPlayer = null;
 			isPlaying = false;
 		}
 
 		String audioName = audioList.getItemAtPosition(position).toString();
 		int audioId = audioMap.get(audioName);
-		player = MediaPlayer.create(this, audioId);
+		audioPlayer = MediaPlayer.create(this, audioId);
 
-		player.start();
+		audioPlayer.start();
 		isPlaying = true;
 		Log.e("start: isplaying", String.valueOf(isPlaying));
 	}
@@ -107,9 +128,9 @@ public class AddAudioActivity extends Activity implements OnClickListener,
 
 	public void onDestroy() {
 		super.onDestroy();
-		if (player != null) {
-			player.release();
+		if (audioPlayer != null) {
+			audioPlayer.release();
 		}
-		player = null;
+		audioPlayer = null;
 	}
 }

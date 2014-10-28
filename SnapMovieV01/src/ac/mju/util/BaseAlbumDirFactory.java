@@ -32,6 +32,11 @@ public final class BaseAlbumDirFactory extends AlbumFactory {
 		return new File(Environment.getExternalStorageDirectory() + CAMERA_DIR
 				+ fileName + CAMERA_EXTENTION);
 	}
+	
+	public static String getAlbumStorageDirPath(String fileName) {
+		return String.valueOf(Environment.getExternalStorageDirectory() + CAMERA_DIR
+				+ fileName + CAMERA_EXTENTION);
+	}
 
 	@Override
 	public String getAlbumStorageDirUrl(String albumName) {
