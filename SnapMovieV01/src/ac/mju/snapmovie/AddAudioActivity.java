@@ -39,7 +39,9 @@ public class AddAudioActivity extends Activity implements OnClickListener,
 		setContentView(R.layout.activity_add_audio);
 
 		prevButton = (Button) findViewById(R.id.btn_videoFilter_prev);
+		prevButton.setOnClickListener(this);
 		nextButton = (Button) findViewById(R.id.btn_videoFilter_next);
+		nextButton.setOnClickListener(this);
 		FilterdVideo = (VideoView) findViewById(R.id.videoview_filtered_video);
 		audioList = (ListView) findViewById(R.id.list_audio);
 		voiceList = (ListView) findViewById(R.id.list_voice);
