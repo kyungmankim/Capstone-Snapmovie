@@ -6,15 +6,16 @@ import java.util.List;
 
 import ac.mju.util.BaseAlbumDirFactory;
 import android.app.Activity;
-import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class VideoGalleryActivity extends Activity {
-	private AlertDialog alertDialog;
+public class VideoGalleryActivity extends Activity implements OnClickListener {
 	private ListView listView;
 
 	/**
@@ -66,11 +67,16 @@ public class VideoGalleryActivity extends Activity {
 	}
 
 	@Override
-	protected void onStop() {
+	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		super.onStop();
-		if (alertDialog != null)
-			alertDialog.dismiss();
+		switch (v.getId()) {
+		case R.id.btn_videoGallery_prev:
+			startActivity(new Intent(this, MainActivity.class));
+			finish();
+			break;
+		case R.id.btn_videoGallery_next:
+			startActivity(new Intent(this, VideoFilterActivity.class));
+			break;
+		}
 	}
-
 }
