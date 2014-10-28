@@ -1,5 +1,6 @@
 package ac.mju.snapmovie;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +14,10 @@ public class VideoFilterActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_video_filter);
-
+		
+		ActionBar actionBar = getActionBar();
+		actionBar.hide();
+		
 		Button prevButton = (Button) findViewById(R.id.btn_videoFilter_prev);
 		prevButton.setOnClickListener(this);
 		Button nextButton = (Button) findViewById(R.id.btn_videoFilter_next);

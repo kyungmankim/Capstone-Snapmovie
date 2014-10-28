@@ -2,6 +2,7 @@ package ac.mju.snapmovie;
 
 import ac.mju.util.AlbumFactory;
 import ac.mju.util.BaseAlbumDirFactory;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -26,6 +27,9 @@ public class VideoActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_video);
+		ActionBar actionBar = getActionBar();
+		actionBar.hide();
+		
 		actionFlag = true;
 	}
 

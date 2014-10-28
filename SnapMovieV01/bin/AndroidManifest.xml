@@ -18,33 +18,27 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".VideoActivity"
-            android:label="@string/title_activity_video"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:label="@string/title_activity_video">
         </activity>
         <activity
             android:name=".ShootVideoActivity"
-            android:label="@string/title_activity_shoot_video"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:label="@string/title_activity_shoot_video" >
         </activity>
         <activity
             android:name=".VideoGalleryActivity"
-            android:label="@string/title_activity_video_gallery"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:label="@string/title_activity_video_gallery">
         </activity>
         <activity
             android:name=".VideoFilterActivity"
-            android:label="@string/title_activity_video_filter"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:label="@string/title_activity_video_filter">
         </activity>
         <activity
             android:name=".AddAudioActivity"
-            android:label="@string/title_activity_add_audio"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:label="@string/title_activity_add_audio" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

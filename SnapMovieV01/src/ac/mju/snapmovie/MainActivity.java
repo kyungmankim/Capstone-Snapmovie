@@ -1,5 +1,6 @@
 package ac.mju.snapmovie;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +16,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
+		ActionBar actionBar = getActionBar();
+		actionBar.hide();
+		
 		testButton = (Button) findViewById(R.id.button_test);
 		testButton.setOnClickListener(this);
 	}

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import ac.mju.util.BaseAlbumDirFactory;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -43,6 +44,10 @@ public class AddAudioActivity extends Activity implements OnClickListener,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_audio);
+
+		ActionBar actionBar = getActionBar();
+		actionBar.hide();
+		
 		prevButton = (Button) findViewById(R.id.btn_videoFilter_prev);
 		prevButton.setOnClickListener(this);
 		nextButton = (Button) findViewById(R.id.btn_videoFilter_next);

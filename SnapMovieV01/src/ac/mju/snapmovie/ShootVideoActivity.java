@@ -6,6 +6,7 @@ import java.util.Calendar;
 
 import ac.mju.util.AlbumFactory;
 import ac.mju.util.BaseAlbumDirFactory;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.hardware.Camera;
@@ -33,7 +34,10 @@ public class ShootVideoActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shoot_video);
-
+		
+		ActionBar actionBar = getActionBar();
+		actionBar.hide();
+		
 		mSurface = (MyCameraSurface) findViewById(R.id.previewFrame);
 		mShutter = (Button) findViewById(R.id.button1);
 		mShutter.setOnClickListener(new Button.OnClickListener() {
