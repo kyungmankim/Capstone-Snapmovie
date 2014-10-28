@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ac.mju.util.BaseAlbumDirFactory;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.VideoView;
 
 public class VideoGalleryActivity extends Activity implements OnClickListener {
 	private ListView listView;
@@ -31,8 +34,15 @@ public class VideoGalleryActivity extends Activity implements OnClickListener {
 
 	private void setUI() {
 		// TODO Auto-generated method stub
+		ActionBar actionBar = getActionBar();
+		actionBar.hide();
+		
+		Button prevButton = (Button) findViewById(R.id.btn_videoGallery_prev);
+		prevButton.setOnClickListener(this);
+		Button nextButton = (Button) findViewById(R.id.btn_videoGallery_next);
+		nextButton.setOnClickListener(this);
+		VideoView selectVideo = (VideoView) findViewById(R.id.selectVideo);
 		listView = (ListView) findViewById(R.id.filenamelist);
-
 	}
 
 	private void setResult() {
