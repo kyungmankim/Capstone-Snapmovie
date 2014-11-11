@@ -23,15 +23,21 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 public class VideoGalleryActivity extends Activity implements OnClickListener {
+	// view
 	private ListView listView;
 	private VideoView selectVideo;
+
+	// video
 	private MediaController mediaController;
+
+	// work
 	private ArrayAdapter<String> fileList;
+	private File[] listFiles;
+	private ArrayList<String> list;
 
 	/**
-	 * 특정 폴더만들어서 그곳에 전부 저장 및 가져와서 리스트업 해줘야 함. 
-	 * 비디오 사이즈 조절 추가하여야함
-	 * 리스트 클릭시 한칸위 가게 하는것 하는중
+	 * 특정 폴더만들어서 그곳에 전부 저장 및 가져와서 리스트업 해줘야 함. 비디오 사이즈 조절 추가하여야함 리스트 클릭시 한칸위 가게
+	 * 하는것 하는중
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,6 @@ public class VideoGalleryActivity extends Activity implements OnClickListener {
 		mediaController = new MediaController(this);
 		mediaController.setAnchorView(selectVideo);
 		selectVideo.setMediaController(mediaController);
-		File[] listFiles = (this.getListFiles());
 
 		Uri videoUri = null;
 		if (listFiles[0] != null) {
@@ -73,11 +78,11 @@ public class VideoGalleryActivity extends Activity implements OnClickListener {
 
 	private void setResult() {
 		// TODO Auto-generated method stub
-		File[] listFiles = (this.getListFiles());
-		ArrayList<String> list = new ArrayList<String>();
-		// for (File file : listFiles)
+		listFiles = (this.getListFiles());
+		list = new ArrayList<String>();
+		// for (File file : listFiles) 오름차순
 		// list.add(file.getName());
-		if (listFiles != null) {
+		if (listFiles != null) { // 내림차순
 			for (int i = listFiles.length - 1; i != -1; i--) {
 				File file = listFiles[i];
 				list.add(file.getName());
@@ -88,15 +93,34 @@ public class VideoGalleryActivity extends Activity implements OnClickListener {
 				android.R.layout.simple_list_item_1, list);
 		listView.setAdapter(fileList);
 		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-		
+
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
 				Log.i("list", "call? " + position + "/" + id);
-				fileList.notifyDataSetChanged();
-				listView.setSelectionFromTop(0, 0);
+
+				boolean flag = swapItems(position);
+				if (flag)
+					fileList.notifyDataSetInvalidated();
+//				listView.setSelectionFromTop(0, 0);
 			}
 		});
+	}
+
+	protected boolean swapItems(int position) {
+		// TODO Auto-generated method stub
+		if (position < 1)
+			return false;
+		File tempFile = listFiles[position];
+		String tempString = list.get(position);
+
+		list.set(position, list.get(position - 1));
+		list.set(position - 1, tempString);
+
+		listFiles[position] = listFiles[position - 1];
+		listFiles[position - 1] = tempFile;
+
+		return true;
 	}
 
 	private File[] getListFiles() {
