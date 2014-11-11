@@ -36,8 +36,8 @@ public class VideoGalleryActivity extends Activity implements OnClickListener {
 	private ArrayList<String> list;
 
 	/**
-	 * 특정 폴더만들어서 그곳에 전부 저장 및 가져와서 리스트업 해줘야 함. 비디오 사이즈 조절 추가하여야함 리스트 클릭시 한칸위 가게
-	 * 하는것 하는중
+	 * 특정 폴더만들어서 그곳에 전부 저장 및 가져와서 리스트업 해줘야 함. 
+	 * 비디오 사이즈 조절 추가하여야함
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +102,7 @@ public class VideoGalleryActivity extends Activity implements OnClickListener {
 				boolean flag = swapItems(position);
 				if (flag)
 					fileList.notifyDataSetInvalidated();
-//				listView.setSelectionFromTop(0, 0);
+				// listView.setSelectionFromTop(0, 0);
 			}
 		});
 	}
