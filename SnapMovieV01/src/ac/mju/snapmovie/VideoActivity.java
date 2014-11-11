@@ -71,7 +71,6 @@ public class VideoActivity extends Activity {
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		Log.i("카메라 촬영 완료", "촬ㄹ영끝");
 		switch (requestCode) {
 		case ACTION_TAKE_VIDEO: {
 			if (resultCode == RESULT_OK) {

@@ -2,27 +2,36 @@ package ac.mju.snapmovie;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 import ac.mju.util.BaseAlbumDirFactory;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.MediaController;
 import android.widget.VideoView;
 
 public class VideoGalleryActivity extends Activity implements OnClickListener {
 	private ListView listView;
+	private VideoView selectVideo;
+	private MediaController mediaController;
+	private ArrayAdapter<String> fileList;
 
 	/**
-	 * 특정 폴더만들어서 그곳에 전부 저장 및 가져와서 리스트업 해줘야 함.
+	 * 특정 폴더만들어서 그곳에 전부 저장 및 가져와서 리스트업 해줘야 함. 
+	 * 비디오 사이즈 조절 추가하여야함
+	 * 리스트 클릭시 한칸위 가게 하는것 하는중
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,31 +39,68 @@ public class VideoGalleryActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_video_gallery);
 		setUI();
 		setResult();
+		setVideoView();
+	}
+
+	private void setVideoView() {
+		// TODO Auto-generated method stub
+		mediaController = new MediaController(this);
+		mediaController.setAnchorView(selectVideo);
+		selectVideo.setMediaController(mediaController);
+		File[] listFiles = (this.getListFiles());
+
+		Uri videoUri = null;
+		if (listFiles[0] != null) {
+			videoUri = Uri.parse(listFiles[0].getAbsolutePath());
+			selectVideo.setVideoURI(videoUri);
+			// selectVideo.requestFocus();
+			selectVideo.start();
+		}
 	}
 
 	private void setUI() {
 		// TODO Auto-generated method stub
 		ActionBar actionBar = getActionBar();
 		actionBar.hide();
-		
+
 		Button prevButton = (Button) findViewById(R.id.btn_videoGallery_prev);
 		prevButton.setOnClickListener(this);
 		Button nextButton = (Button) findViewById(R.id.btn_videoGallery_next);
 		nextButton.setOnClickListener(this);
-		VideoView selectVideo = (VideoView) findViewById(R.id.selectVideo);
+		selectVideo = (VideoView) findViewById(R.id.selectVideo);
 		listView = (ListView) findViewById(R.id.filenamelist);
 	}
 
 	private void setResult() {
 		// TODO Auto-generated method stub
-		File[] listFiles = (new File(BaseAlbumDirFactory.getCameraDIR())
-				.listFiles());
-		List<String> list = new ArrayList<String>();
-		for (File file : listFiles)
-			list.add(file.getName());
-		ArrayAdapter<String> fileList = new ArrayAdapter<String>(this,
+		File[] listFiles = (this.getListFiles());
+		ArrayList<String> list = new ArrayList<String>();
+		// for (File file : listFiles)
+		// list.add(file.getName());
+		if (listFiles != null) {
+			for (int i = listFiles.length - 1; i != -1; i--) {
+				File file = listFiles[i];
+				list.add(file.getName());
+			}
+		}
+
+		fileList = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, list);
 		listView.setAdapter(fileList);
+		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		
+		listView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View v,
+					int position, long id) {
+				Log.i("list", "call? " + position + "/" + id);
+				fileList.notifyDataSetChanged();
+				listView.setSelectionFromTop(0, 0);
+			}
+		});
+	}
+
+	private File[] getListFiles() {
+		return new File(BaseAlbumDirFactory.getCameraDIR()).listFiles();
 	}
 
 	@Override
@@ -89,4 +135,5 @@ public class VideoGalleryActivity extends Activity implements OnClickListener {
 			break;
 		}
 	}
+
 }
