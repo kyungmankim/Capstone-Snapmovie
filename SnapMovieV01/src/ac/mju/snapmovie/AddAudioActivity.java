@@ -124,9 +124,11 @@ public class AddAudioActivity extends Activity implements OnClickListener,
 		switch (v.getId()) {
 		case R.id.btn_videoFilter_prev:
 			startActivity(new Intent(this, VideoFilterActivity.class));
+			finish();
 			break;
 		case R.id.btn_videoFilter_next:
 			startActivity(new Intent(this, MainActivity.class));
+			finish();
 			break;
 		}
 	}

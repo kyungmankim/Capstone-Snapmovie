@@ -133,10 +133,10 @@ public class VideoActivity extends Activity {
 									// 'No'
 									confirmFlag = true;
 									actionFlag = true;
-									finish();
 									startActivity(new Intent(
 											VideoActivity.this,
 											VideoActivity.class));
+									finish();
 								}
 							});
 			AlertDialog alert = alert_confirm.create();

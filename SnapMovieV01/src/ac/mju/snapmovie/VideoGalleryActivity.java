@@ -156,6 +156,7 @@ public class VideoGalleryActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.btn_videoGallery_next:
 			startActivity(new Intent(this, VideoFilterActivity.class));
+			finish();
 			break;
 		}
 	}
