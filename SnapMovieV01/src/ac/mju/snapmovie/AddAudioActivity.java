@@ -25,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 public class AddAudioActivity extends Activity implements OnClickListener,
@@ -47,7 +48,7 @@ public class AddAudioActivity extends Activity implements OnClickListener,
 
 		ActionBar actionBar = getActionBar();
 		actionBar.hide();
-		
+
 		prevButton = (Button) findViewById(R.id.btn_videoFilter_prev);
 		prevButton.setOnClickListener(this);
 		nextButton = (Button) findViewById(R.id.btn_videoFilter_next);
@@ -128,9 +129,17 @@ public class AddAudioActivity extends Activity implements OnClickListener,
 			break;
 		case R.id.btn_videoFilter_next:
 			startActivity(new Intent(this, MainActivity.class));
+			Toast.makeText(AddAudioActivity.this, "완료되었습니다", Toast.LENGTH_SHORT)
+					.show();
+			this.deleteVideos();
 			finish();
 			break;
 		}
+	}
+
+	private void deleteVideos() {
+		// TODO Auto-generated method stub
+		// 나머지 비디오 삭제
 	}
 
 	public void onDestroy() {
